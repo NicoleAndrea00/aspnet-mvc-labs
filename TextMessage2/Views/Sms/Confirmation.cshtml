@@ -1,0 +1,29 @@
+﻿@model TextMessage.Models.MessageText
+
+@{
+    ViewData["Title"] = "Confirmation";
+}
+
+<h1>Confirmation</h1>
+
+<div class="message-box">
+    <h4>Message Sent!</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-4">
+            @Html.DisplayNameFor(model => model.phoneNumber)
+        </dt>
+        <dd class="col-sm-8">
+            @Html.DisplayFor(model => model.phoneNumber)
+        </dd>
+        <dt class="col-sm-4">
+            @Html.DisplayNameFor(model => model.Content)
+        </dt>
+        <dd class="col-sm-8">
+            @Html.DisplayFor(model => model.Content)
+        </dd>
+    </dl>
+    <div>
+        <a asp-action="Send">Send Another Message</a>
+    </div>
+</div>

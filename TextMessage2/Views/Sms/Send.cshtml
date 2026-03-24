@@ -1,0 +1,34 @@
+﻿@model TextMessage.Models.MessageText
+
+@{
+    ViewData["Title"] = "Send";
+}
+
+<h1>Send</h1>
+
+<div class="message-box">
+    <h4>Message</h4>
+    <hr />
+    <form asp-action="Send">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="form-group">
+            <label asp-for="phoneNumber" class="control-label"></label>
+            <input asp-for="phoneNumber" class="form-control" />
+            <span asp-validation-for="phoneNumber" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Content" class="control-label"></label>
+            <textarea asp-for="Content" class="form-control" rows="4"></textarea>
+            <span asp-validation-for="Content" class="text-danger"></span>
+        </div>
+        <div class="form-group mt-3">
+            <input type="submit" value="Send" class="btn btn-primary" />
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
