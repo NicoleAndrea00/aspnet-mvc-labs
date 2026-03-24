@@ -1,0 +1,39 @@
+﻿@model IEnumerable<Grocery.Models.ShoppingCartItems>
+
+@{
+    ViewData["Title"] = "My Cart";
+}
+
+<h1>My Cart</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Code</th>
+            <th>Description</th>
+            <th>Price</th>
+            <th>Quantity</th>
+            <th>Subtotal</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.prodCode</td>
+                <td>@item.prodDescription</td>
+                <td>€@item.prodPrice.ToString("N2")</td>
+                <td>@item.prodQuant</td>
+                <td>€@((item.prodPrice * item.prodQuant).ToString("N2"))</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<h3>Total: €@ViewBag.CartTotal.ToString("N2")</h3>
+
+<p>
+    <a asp-action="Payment" class="btn btn-light">💳 Proceed to Payment</a>    <br /><br />
+    <a asp-action="Index" class="btn btn-outline-primary"> ← Back to Product List</a>
+    &nbsp;
+</p>

@@ -1,0 +1,58 @@
+﻿@model IEnumerable<Grocery.Models.ShoppingCartItems>
+
+@{
+    ViewData["Title"] = "Payment";
+}
+
+<h1>Payment</h1>
+
+<h4>Order Summary</h4>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Description</th>
+            <th>Quantity</th>
+            <th>Subtotal</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.prodDescription</td>
+                <td>@item.prodQuant</td>
+                <td>€@((item.prodPrice * item.prodQuant).ToString("N2"))</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<h3>Total to Pay: €@ViewBag.CartTotal.ToString("N2")</h3>
+
+<hr />
+
+<h4>Enter Payment Details</h4>
+
+<div style="max-width: 400px;">
+    <div class="mb-3">
+        <label>Name on Card</label>
+        <input type="text" class="form-control" placeholder="John Smith" />
+    </div>
+    <div class="mb-3">
+        <label>Card Number</label>
+        <input type="text" class="form-control" placeholder="1234 5678 9012 3456" maxlength="19" />
+    </div>
+    <div class="mb-3">
+        <label>Expiry Date</label>
+        <input type="text" class="form-control" placeholder="MM/YY" maxlength="5" />
+    </div>
+    <div class="mb-3">
+        <label>CVV</label>
+        <input type="text" class="form-control" placeholder="123" maxlength="3" />
+    </div>
+
+    <a asp-action="OrderConfirmed" class="btn btn-success"> Confirm Payment</a>
+    <br /><br />
+    <a asp-action="Cart" class="btn btn-light"> ← My Cart</a>
+
+</div>

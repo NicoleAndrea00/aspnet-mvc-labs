@@ -1,0 +1,49 @@
+﻿@model IEnumerable<Grocery.Models.productItems>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Product List</h1>
+
+<h3>Cart Total: €@ViewBag.CartTotal.ToString("N2")</h3>
+<a asp-action="Cart" class="btn btn-light">🛒 View Cart</a>
+
+<table class="table table table-striped table-hover">
+    <thread class="table-dark"></thread>
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.prodCode)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.prodDescription)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.prodPrice)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.prodCode)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.prodDescription)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.prodPrice)
+                </td>
+                <td>
+                    <a asp-action="AddToCart" asp-route-prodCode="@item.prodCode" class="btn btn-success btn-sm">
+                        + Add to Cart
+                    </a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
